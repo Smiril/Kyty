@@ -3,6 +3,7 @@
 
 #include "Kyty/Core/Common.h"
 #include "Kyty/Sys/Linux/SysLinuxStdlib.h"     // IWYU pragma: export
+#include "Kyty/Sys/MacOS/SysMacOSStdlib.h"     // IWYU pragma: export
 #include "Kyty/Sys/Windows/SysWindowsStdlib.h" // IWYU pragma: export
 
 #endif /* INCLUDE_KYTY_SYS_SYSSTDLIB_H_ */
