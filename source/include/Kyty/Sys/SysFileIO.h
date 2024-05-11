@@ -3,6 +3,7 @@
 
 #include "Kyty/Core/Common.h"
 #include "Kyty/Sys/Linux/SysLinuxFileIO.h"     // IWYU pragma: export
+#include "Kyty/Sys/MacOS/SysMacOSFileIO.h"     // IWYU pragma: export
 #include "Kyty/Sys/Windows/SysWindowsFileIO.h" // IWYU pragma: export
 
 #endif /* INCLUDE_KYTY_SYS_SYSFILEIO_H_ */
