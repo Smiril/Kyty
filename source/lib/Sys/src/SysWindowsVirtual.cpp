@@ -10,8 +10,13 @@
 #include "Kyty/Sys/SysVirtual.h"
 
 #include "cpuinfo.h"
-
-#include <windows.h> // IWYU pragma: keep
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+    #include <windows.h> // IWYU pragma: keep
+   #ifdef _WIN64
+    #include <windows.h> // IWYU pragma: keep
+   #else
+    #include <windows.h> // IWYU pragma: keep
+#endif
 
 // IWYU pragma: no_include <basetsd.h>
 // IWYU pragma: no_include <errhandlingapi.h>
@@ -257,3 +262,5 @@ bool sys_virtual_patch_replace(uint64_t vaddr, uint64_t value)
 } // namespace Kyty::Core
 
 #endif
+#endif
+

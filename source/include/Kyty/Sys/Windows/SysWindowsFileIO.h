@@ -10,7 +10,7 @@
 #include "Kyty/Core/Common.h"
 #include "Kyty/Core/String.h"
 #include "Kyty/Sys/SysTimer.h"
-
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
 namespace Kyty {
 
 using KYTY_HANDLE = void*;
@@ -117,6 +117,8 @@ bool sys_file_move_file(const String& src, const String& dst);
 void sys_file_remove_readonly(const String& name);
 
 } // namespace Kyty
+
+#endif
 
 #endif
 

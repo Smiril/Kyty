@@ -1188,7 +1188,7 @@ bool ZipReader::GetFileStat(int file_index, ZipFileStat* o)
 		o->m_file_index = s.m_file_index;
 
 		SysTimeStruct at = {0};
-		sys_time_t_to_system(s.m_time, at);
+        sys_time_t_to_system(s.m_time, at);
 		o->m_time = DateTime(Date(at.Year, at.Month, at.Day), Time(at.Hour, at.Minute, at.Second, at.Milliseconds));
 
 		o->m_crc32       = s.m_crc32;
