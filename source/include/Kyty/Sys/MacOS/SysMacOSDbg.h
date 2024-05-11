@@ -4,7 +4,7 @@
 // IWYU pragma: private
 
 #if KYTY_PLATFORM != KYTY_PLATFORM_MACOS
-//#error "KYTY_PLATFORM != KYTY_PLATFORM_LINUX"
+//#error "KYTY_PLATFORM != KYTY_PLATFORM_MACOS"
 #else
 
 namespace Kyty {
@@ -32,4 +32,4 @@ void sys_set_exception_filter(exception_filter_func_t func);
 
 #endif
 
-#endif /* SYS_LINUX_INCLUDE_KYTY_SYSDBG_H_ */
+#endif /* SYS_MACOS_INCLUDE_KYTY_SYSDBG_H_ */
