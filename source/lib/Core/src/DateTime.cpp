@@ -415,84 +415,19 @@ Date Date::FromMacros(const String& date)
 
 Date Date::FromSystem()
 {
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
-	SysTimeStruct t {};
-    sys_get_system_time(t);
-
-    return Date(t.Year, t.Month, t.Day);
-#ifdef _WIN64
     SysTimeStruct t {};
     sys_get_system_time(t);
 
     return Date(t.Year, t.Month, t.Day);
-#else
-   //define something for Windows (32-bit only)
-#endif
-#elif __APPLE__
- // apple
-    // current date and time on the current system
-    time_t now = time(0);
-
-       return Date(now);
-#elif __ANDROID__
- // Below __linux__ check should be enough to handle Android,
- // but something may be unique to Android.
-#elif __linux__
- // linux
-    SysTimeStruct t {};
-    sys_get_system_time(t);
-
-    return Date(t.Year, t.Month, t.Day);
-#elif __unix__ // all unices not caught above
-    // Unix
-#elif defined(_POSIX_VERSION)
-    // POSIX
-#else
-#   error "Unknown compiler"
-#endif
 }
 
 Date Date::FromSystemUTC()
 {
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
     SysTimeStruct t {};
     
     sys_get_system_time_utc(t);
     
     return Date(t.Year, t.Month, t.Day);
-#ifdef _WIN64
-    SysTimeStruct t {};
-    
-    sys_get_system_time_utc(t);
-    
-    return Date(t.Year, t.Month, t.Day);
-#else
-   //define something for Windows (32-bit only)
-#endif
-#elif __APPLE__
- // apple
-    // current date and time on the current system
-    time_t now = time(0);
-
-       return Date(now);
-#elif __ANDROID__
- // Below __linux__ check should be enough to handle Android,
- // but something may be unique to Android.
-#elif __linux__
- // linux
-    SysTimeStruct t {};
-    
-    sys_get_system_time_utc(t);
-    
-    return Date(t.Year, t.Month, t.Day);
-#elif __unix__ // all unices not caught above
-    // Unix
-#elif defined(_POSIX_VERSION)
-    // POSIX
-#else
-#   error "Unknown compiler"
-#endif
-
 }
 
 Time::Time(int hour, int minute, int second, int msec)
@@ -502,84 +437,19 @@ Time::Time(int hour, int minute, int second, int msec)
 
 Time Time::FromSystem()
 {
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
     SysTimeStruct t {};
     
     sys_get_system_time(t);
 
     return Time(t.Hour, t.Minute, t.Second, t.Milliseconds);
-#ifdef _WIN64
-    SysTimeStruct t {};
-    
-    sys_get_system_time(t);
-
-    return Time(t.Hour, t.Minute, t.Second, t.Milliseconds);
-#else
-   //define something for Windows (32-bit only)
-#endif
-#elif __APPLE__
- // apple
-    // current date and time on the current system
-    time_t now = time(0);
-
-       return Time(now);
-#elif __ANDROID__
- // Below __linux__ check should be enough to handle Android,
- // but something may be unique to Android.
-#elif __linux__
- // linux
-    SysTimeStruct t {};
-    
-    sys_get_system_time(t);
-
-    return Time(t.Hour, t.Minute, t.Second, t.Milliseconds);
-#elif __unix__ // all unices not caught above
-    // Unix
-#elif defined(_POSIX_VERSION)
-    // POSIX
-#else
-#   error "Unknown compiler"
-#endif
-
 }
 
 Time Time::FromSystemUTC()
 {
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
     SysTimeStruct t {};
     sys_get_system_time_utc(t);
 
     return Time(t.Hour, t.Minute, t.Second, t.Milliseconds);
-#ifdef _WIN64
-    SysTimeStruct t {};
-    sys_get_system_time_utc(t);
-
-    return Time(t.Hour, t.Minute, t.Second, t.Milliseconds);
-#else
-   //define something for Windows (32-bit only)
-#endif
-#elif __APPLE__
- // apple
-    // current date and time on the current system
-    time_t now = time(0);
-
-       return Time(now);
-#elif __ANDROID__
- // Below __linux__ check should be enough to handle Android,
- // but something may be unique to Android.
-#elif __linux__
- // linux
-    SysTimeStruct t {};
-    sys_get_system_time_utc(t);
-
-    return Time(t.Hour, t.Minute, t.Second, t.Milliseconds);
-#elif __unix__ // all unices not caught above
-    // Unix
-#elif defined(_POSIX_VERSION)
-    // POSIX
-#else
-#   error "Unknown compiler"
-#endif
 }
 
 void Time::Set(int hour, int minute, int second, int msec)
@@ -896,7 +766,6 @@ Time Time::operator-=(int secs)
 
 DateTime DateTime::FromSystem()
 {
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
     SysTimeStruct t {};
     sys_get_system_time(t);
 
@@ -906,50 +775,10 @@ DateTime DateTime::FromSystem()
     }
 
     return DateTime(Date(t.Year, t.Month, t.Day), Time(t.Hour, t.Minute, t.Second, t.Milliseconds));
-#ifdef _WIN64
-    SysTimeStruct t {};
-    sys_get_system_time(t);
-
-    if (t.is_invalid)
-    {
-        return {};
-    }
-
-    return DateTime(Date(t.Year, t.Month, t.Day), Time(t.Hour, t.Minute, t.Second, t.Milliseconds));
-#else
-   //define something for Windows (32-bit only)
-#endif
-#elif __APPLE__
- // apple
-    time_t now = time(0);
-
-       return DateTime(Date(now),Time(now));
-#elif __ANDROID__
- // Below __linux__ check should be enough to handle Android,
- // but something may be unique to Android.
-#elif __linux__
- // linux
-    SysTimeStruct t {};
-    sys_get_system_time(t);
-
-    if (t.is_invalid)
-    {
-        return {};
-    }
-
-    return DateTime(Date(t.Year, t.Month, t.Day), Time(t.Hour, t.Minute, t.Second, t.Milliseconds));
-#elif __unix__ // all unices not caught above
-    // Unix
-#elif defined(_POSIX_VERSION)
-    // POSIX
-#else
-#   error "Unknown compiler"
-#endif
 }
 
 DateTime DateTime::FromSystemUTC()
 {
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
     SysTimeStruct t {};
     sys_get_system_time_utc(t);
 
@@ -959,45 +788,6 @@ DateTime DateTime::FromSystemUTC()
     }
 
     return DateTime(Date(t.Year, t.Month, t.Day), Time(t.Hour, t.Minute, t.Second, t.Milliseconds));
-#ifdef _WIN64
-    SysTimeStruct t {};
-    sys_get_system_time_utc(t);
-
-    if (t.is_invalid)
-    {
-        return {};
-    }
-
-    return DateTime(Date(t.Year, t.Month, t.Day), Time(t.Hour, t.Minute, t.Second, t.Milliseconds));
-#else
-   //define something for Windows (32-bit only)
-#endif
-#elif __APPLE__
- // apple
-    time_t now = time(0);
-
-       return DateTime(Date(now),Time(now));
-#elif __ANDROID__
- // Below __linux__ check should be enough to handle Android,
- // but something may be unique to Android.
-#elif __linux__
- // linux
-    SysTimeStruct t {};
-    sys_get_system_time_utc(t);
-
-    if (t.is_invalid)
-    {
-        return {};
-    }
-
-    return DateTime(Date(t.Year, t.Month, t.Day), Time(t.Hour, t.Minute, t.Second, t.Milliseconds));
-#elif __unix__ // all unices not caught above
-    // Unix
-#elif defined(_POSIX_VERSION)
-    // POSIX
-#else
-#   error "Unknown compiler"
-#endif
 }
 
 /**

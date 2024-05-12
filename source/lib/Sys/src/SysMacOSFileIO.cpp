@@ -1,8 +1,6 @@
 #include "Kyty/Core/Common.h"
 
-#if KYTY_PLATFORM != KYTY_PLATFORM_MACOS
-//#error "KYTY_PLATFORM != KYTY_PLATFORM_MACOS"
-#else
+#if defined(__APPLE__)
 
 #include "Kyty/Core/DbgAssert.h"
 #include "Kyty/Core/MemoryAlloc.h"

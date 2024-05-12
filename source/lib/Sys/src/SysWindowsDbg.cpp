@@ -10,26 +10,13 @@
 // IWYU pragma: no_include <excpt.h>
 // IWYU pragma: no_include <winbase.h>
 
-#if KYTY_PLATFORM != KYTY_PLATFORM_WINDOWS
-//#error "KYTY_PLATFORM != KYTY_PLATFORM_WINDOWS"
-#else
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
 
 #include "Kyty/Core/DbgAssert.h"
 #include "Kyty/Sys/SysDbg.h"
 
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
-    #include <windows.h> // IWYU pragma: keep
-    #include <psapi.h> // IWYU pragma: keep
-   #ifdef _WIN64
-    #include <windows.h> // IWYU pragma: keep
-    #include <psapi.h> // IWYU pragma: keep
-   #else
-    #include <windows.h> // IWYU pragma: keep
-    #include <psapi.h> // IWYU pragma: keep
-#endif
-#endif
-
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+#include <windows.h> // IWYU pragma: keep
+#include <psapi.h> // IWYU pragma: keep
 
 
 #if KYTY_COMPILER == KYTY_COMPILER_MSVC
@@ -312,5 +299,3 @@ void sys_set_exception_filter(exception_filter_func_t func)
 } // namespace Kyty
 
 #endif
-#endif
-

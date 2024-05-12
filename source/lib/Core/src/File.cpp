@@ -927,6 +927,7 @@ void File::Write(const ByteBuffer& buf, uint32_t* bytes_written)
 
 DateTime File::GetLastAccessTimeUTC(const String& name)
 {
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
 	SysTimeStruct t {};
 	sys_file_to_system_time_utc(sys_file_get_last_access_time_utc(name), t);
 
@@ -940,6 +941,7 @@ DateTime File::GetLastAccessTimeUTC(const String& name)
 
 DateTime File::GetLastWriteTimeUTC(const String& name)
 {
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
 	SysTimeStruct t {};
 	sys_file_to_system_time_utc(sys_file_get_last_write_time_utc(name), t);
 

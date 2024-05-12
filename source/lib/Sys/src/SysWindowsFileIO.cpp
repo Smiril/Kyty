@@ -2,9 +2,7 @@
 
 #include "Kyty/Core/Common.h"
 
-#if KYTY_PLATFORM != KYTY_PLATFORM_WINDOWS
-//#error "KYTY_PLATFORM != KYTY_PLATFORM_WINDOWS"
-#else
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
 
 #include "Kyty/Core/MemoryAlloc.h"
 #include "Kyty/Core/String.h"
@@ -12,13 +10,8 @@
 #include "Kyty/Sys/SysFileIO.h"
 #include "Kyty/Sys/SysTimer.h"
 
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
-    #include <windows.h> // IWYU pragma: keep
-   #ifdef _WIN64
-    #include <windows.h> // IWYU pragma: keep
-   #else
-    #include <windows.h> // IWYU pragma: keep
-#endif
+#include <windows.h> // IWYU pragma: keep
+
 // IWYU pragma: no_include <fileapi.h>
 // IWYU pragma: no_include <handleapi.h>
 // IWYU pragma: no_include <minwinbase.h>
@@ -645,5 +638,4 @@ void sys_file_remove_readonly(const String& name)
 
 } // namespace Kyty
 
-#endif
 #endif

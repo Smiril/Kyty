@@ -1,8 +1,6 @@
 #include "Kyty/Core/Common.h"
 
-#if KYTY_PLATFORM != KYTY_PLATFORM_WINDOWS
-//#error "KYTY_PLATFORM != KYTY_PLATFORM_WINDOWS"
-#else
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
 
 #include "Kyty/Core/DbgAssert.h"
 #include "Kyty/Core/String.h"
@@ -10,13 +8,7 @@
 #include "Kyty/Sys/SysVirtual.h"
 
 #include "cpuinfo.h"
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
-    #include <windows.h> // IWYU pragma: keep
-   #ifdef _WIN64
-    #include <windows.h> // IWYU pragma: keep
-   #else
-    #include <windows.h> // IWYU pragma: keep
-#endif
+#include <windows.h> // IWYU pragma: keep
 
 // IWYU pragma: no_include <basetsd.h>
 // IWYU pragma: no_include <errhandlingapi.h>
@@ -262,5 +254,3 @@ bool sys_virtual_patch_replace(uint64_t vaddr, uint64_t value)
 } // namespace Kyty::Core
 
 #endif
-#endif
-
