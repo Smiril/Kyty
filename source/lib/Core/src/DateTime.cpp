@@ -414,7 +414,29 @@ Date Date::FromMacros(const String& date)
 
 Date Date::FromSystem()
 {
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
 	SysTimeStruct t {};
+#ifdef _WIN64
+    SysTimeStruct t {};
+#else
+   //define something for Windows (32-bit only)
+#endif
+#elif __APPLE__
+ // apple
+    struct timeval t {};
+#elif __ANDROID__
+ // Below __linux__ check should be enough to handle Android,
+ // but something may be unique to Android.
+#elif __linux__
+ // linux
+    SysTimeStruct t {};
+#elif __unix__ // all unices not caught above
+    // Unix
+#elif defined(_POSIX_VERSION)
+    // POSIX
+#else
+#   error "Unknown compiler"
+#endif
 	sys_get_system_time(t);
 
 	return Date(t.Year, t.Month, t.Day);
@@ -422,7 +444,29 @@ Date Date::FromSystem()
 
 Date Date::FromSystemUTC()
 {
-	SysTimeStruct t {};
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+    SysTimeStruct t {};
+#ifdef _WIN64
+    SysTimeStruct t {};
+#else
+   //define something for Windows (32-bit only)
+#endif
+#elif __APPLE__
+ // apple
+    struct timeval t {};
+#elif __ANDROID__
+ // Below __linux__ check should be enough to handle Android,
+ // but something may be unique to Android.
+#elif __linux__
+ // linux
+    SysTimeStruct t {};
+#elif __unix__ // all unices not caught above
+    // Unix
+#elif defined(_POSIX_VERSION)
+    // POSIX
+#else
+#   error "Unknown compiler"
+#endif
 	sys_get_system_time_utc(t);
 
 	return Date(t.Year, t.Month, t.Day);
@@ -435,7 +479,29 @@ Time::Time(int hour, int minute, int second, int msec)
 
 Time Time::FromSystem()
 {
-	SysTimeStruct t {};
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+    SysTimeStruct t {};
+#ifdef _WIN64
+    SysTimeStruct t {};
+#else
+   //define something for Windows (32-bit only)
+#endif
+#elif __APPLE__
+ // apple
+    struct timeval t {};
+#elif __ANDROID__
+ // Below __linux__ check should be enough to handle Android,
+ // but something may be unique to Android.
+#elif __linux__
+ // linux
+    SysTimeStruct t {};
+#elif __unix__ // all unices not caught above
+    // Unix
+#elif defined(_POSIX_VERSION)
+    // POSIX
+#else
+#   error "Unknown compiler"
+#endif
 	sys_get_system_time(t);
 
 	return Time(t.Hour, t.Minute, t.Second, t.Milliseconds);
@@ -443,7 +509,29 @@ Time Time::FromSystem()
 
 Time Time::FromSystemUTC()
 {
-	SysTimeStruct t {};
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+    SysTimeStruct t {};
+#ifdef _WIN64
+    SysTimeStruct t {};
+#else
+   //define something for Windows (32-bit only)
+#endif
+#elif __APPLE__
+ // apple
+    struct timeval t {};
+#elif __ANDROID__
+ // Below __linux__ check should be enough to handle Android,
+ // but something may be unique to Android.
+#elif __linux__
+ // linux
+    SysTimeStruct t {};
+#elif __unix__ // all unices not caught above
+    // Unix
+#elif defined(_POSIX_VERSION)
+    // POSIX
+#else
+#   error "Unknown compiler"
+#endif
 	sys_get_system_time_utc(t);
 
 	return Time(t.Hour, t.Minute, t.Second, t.Milliseconds);
@@ -763,7 +851,29 @@ Time Time::operator-=(int secs)
 
 DateTime DateTime::FromSystem()
 {
-	SysTimeStruct t {};
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+    SysTimeStruct t {};
+#ifdef _WIN64
+    SysTimeStruct t {};
+#else
+   //define something for Windows (32-bit only)
+#endif
+#elif __APPLE__
+ // apple
+    struct timeval t {};
+#elif __ANDROID__
+ // Below __linux__ check should be enough to handle Android,
+ // but something may be unique to Android.
+#elif __linux__
+ // linux
+    SysTimeStruct t {};
+#elif __unix__ // all unices not caught above
+    // Unix
+#elif defined(_POSIX_VERSION)
+    // POSIX
+#else
+#   error "Unknown compiler"
+#endif
 	sys_get_system_time(t);
 
 	if (t.is_invalid)
@@ -776,7 +886,29 @@ DateTime DateTime::FromSystem()
 
 DateTime DateTime::FromSystemUTC()
 {
-	SysTimeStruct t {};
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+    SysTimeStruct t {};
+#ifdef _WIN64
+    SysTimeStruct t {};
+#else
+   //define something for Windows (32-bit only)
+#endif
+#elif __APPLE__
+ // apple
+    struct timeval t {};
+#elif __ANDROID__
+ // Below __linux__ check should be enough to handle Android,
+ // but something may be unique to Android.
+#elif __linux__
+ // linux
+    SysTimeStruct t {};
+#elif __unix__ // all unices not caught above
+    // Unix
+#elif defined(_POSIX_VERSION)
+    // POSIX
+#else
+#   error "Unknown compiler"
+#endif
 	sys_get_system_time_utc(t);
 
 	if (t.is_invalid)
