@@ -48,7 +48,7 @@ Cocoa_CreateShaper(SDL_Window* window)
 
     data = (SDL_ShapeData *)SDL_malloc(sizeof(SDL_ShapeData));
     result->driverdata = data;
-    data->context = [windata.nswindow NSView:graphicsContext];
+    data->context = [windata.nswindow graphicsContext];
     data->saved = SDL_FALSE;
     data->shape = NULL;
 

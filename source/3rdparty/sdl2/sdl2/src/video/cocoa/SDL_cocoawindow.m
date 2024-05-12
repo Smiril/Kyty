@@ -260,7 +260,7 @@ static void ConvertNSRect(NSScreen *screen, BOOL fullscreen, NSRect *r)
 static void
 ScheduleContextUpdates(SDL_WindowData *data)
 {
-    NSOpenGLContext  : NSObject *currentContext;
+    NSOpenGLContext *currentContext;
     NSMutableArray *contexts;
     if (!data || !data.nscontexts) {
         return;
@@ -515,7 +515,7 @@ Cocoa_UpdateClipCursor(SDL_Window * window)
 
     [view setNextResponder:self];
 
-    [view allowedTouchTypes:YES];
+    [view setAcceptsTouchEvents:YES];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -2421,7 +2421,7 @@ Cocoa_AcceptDragAndDrop(SDL_Window * window, SDL_bool accept)
 {
     SDL_WindowData *data = (__bridge SDL_WindowData *) window->driverdata;
     if (accept) {
-        [data.nswindow registerForDraggedTypes:[NSArray arrayWithObject:(NSString *)UTTypeFileURL]];
+        [data.nswindow registerForDraggedTypes:[NSArray arrayWithObject:(NSString *)kUTTypeFileURL]];
     } else {
         [data.nswindow unregisterDraggedTypes];
     }
