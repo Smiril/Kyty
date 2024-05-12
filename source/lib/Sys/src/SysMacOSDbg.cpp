@@ -35,7 +35,7 @@ void sys_stack_usage(sys_dbg_stack_info_t& s)
 
 	char str[1024];
 	char str2[1024];
-	result = sprintf(str, "/proc/%d/exe", static_cast<int>(pid));
+	result = snprintf(str, 1024, "/proc/%d/exe", static_cast<int>(pid));
 
 	ssize_t buff_len = 0;
 	if ((buff_len = readlink(str, str2, 1023)) == -1)
@@ -45,7 +45,7 @@ void sys_stack_usage(sys_dbg_stack_info_t& s)
 	str2[buff_len]   = '\0';
 	const char* name = basename(str2);
 
-	result = sprintf(str, "/proc/%d/maps", static_cast<int>(pid));
+	result = snprintf(str, 1024,"/proc/%d/maps", static_cast<int>(pid));
 
 	memset(&s, 0, sizeof(sys_dbg_stack_info_t));
 
