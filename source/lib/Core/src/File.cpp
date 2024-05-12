@@ -37,7 +37,7 @@ namespace Kyty::Core {
 struct File::FilePrivate
 {
 	Encoding    e;
-	sys_file_t* f;
+    FilePrivate* f;
 };
 
 String* g_assets_dir     = nullptr;
