@@ -161,7 +161,7 @@
 { @autoreleasepool
 {
     NSPasteboard *pasteboard = [sender draggingPasteboard];
-    NSArray *types = [NSArray arrayWithObject:NSFilenamesPboardType];
+    NSArray *types = [NSArray arrayWithObject:NSPasteboardTypeFileURL];
     NSString *desiredType = [pasteboard availableTypeFromArray:types];
     SDL_Window *sdlwindow = [self findSDLWindow];
     NSData *data;
@@ -179,8 +179,8 @@
         return NO;
     }
 
-    SDL_assert([desiredType isEqualToString:NSFilenamesPboardType]);
-    array = [pasteboard propertyListForType:@"NSFilenamesPboardType"];
+    SDL_assert([desiredType isEqualToString:NSPasteboardTypeFileURL]);
+    array = [pasteboard propertyListForType:@"NSPasteboardTypeFileURL"];
 
     /* Code addon to update the mouse location */
     point = [sender draggingLocation];
@@ -260,7 +260,7 @@ static void ConvertNSRect(NSScreen *screen, BOOL fullscreen, NSRect *r)
 static void
 ScheduleContextUpdates(SDL_WindowData *data)
 {
-    NSOpenGLContext *currentContext;
+    NSOpenGLContext  : NSObject *currentContext;
     NSMutableArray *contexts;
     if (!data || !data.nscontexts) {
         return;
@@ -515,7 +515,7 @@ Cocoa_UpdateClipCursor(SDL_Window * window)
 
     [view setNextResponder:self];
 
-    [view setAcceptsTouchEvents:YES];
+    [view allowedTouchTypes:YES];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -1678,7 +1678,7 @@ SetupWindowData(_THIS, SDL_Window * window, NSWindow *nswindow, NSView *nsview, 
     /* Prevents the window's "window device" from being destroyed when it is
      * hidden. See http://www.mikeash.com/pyblog/nsopenglcontext-and-one-shot.html
      */
-    [nswindow setOneShot:NO];
+    //[nswindow setOneShot:NO];
 
     /* All done! */
     window->driverdata = (void *)CFBridgingRetain(data);
@@ -2421,7 +2421,7 @@ Cocoa_AcceptDragAndDrop(SDL_Window * window, SDL_bool accept)
 {
     SDL_WindowData *data = (__bridge SDL_WindowData *) window->driverdata;
     if (accept) {
-        [data.nswindow registerForDraggedTypes:[NSArray arrayWithObject:(NSString *)kUTTypeFileURL]];
+        [data.nswindow registerForDraggedTypes:[NSArray arrayWithObject:(NSString *)UTTypeFileURL]];
     } else {
         [data.nswindow unregisterDraggedTypes];
     }

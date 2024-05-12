@@ -287,7 +287,7 @@ static const char *
 Cocoa_GetDisplayName(CGDirectDisplayID displayID)
 {
     /* This API is deprecated in 10.9 with no good replacement (as of 10.15). */
-    io_service_t servicePort = CGDisplayIOServicePort(displayID);
+    io_service_t servicePort = CGDisplayIOServicePort(CGDirectDisplayID display);
     CFDictionaryRef deviceInfo = IODisplayCreateInfoDictionary(servicePort, kIODisplayOnlyPreferredName);
     NSDictionary *localizedNames = [(__bridge NSDictionary *)deviceInfo objectForKey:[NSString stringWithUTF8String:kDisplayProductName]];
     const char* displayName = NULL;
