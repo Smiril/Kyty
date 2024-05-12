@@ -5,9 +5,9 @@
 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
 #include "Kyty/Sys/Windows/SysWindowsStdio.h" //
-#elif __APPLE__
+#elif defined(__APPLE__)
 #include "Kyty/Sys/MacOS/SysMacOSStdio.h"     //
-#elif __linux__
+#elif defined(__linux__)
 #include "Kyty/Sys/Linux/SysLinuxStdio.h"     //
 #else
 #   error "Unknown compiler"
