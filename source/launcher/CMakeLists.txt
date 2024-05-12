@@ -47,10 +47,6 @@ endif()
 
 add_dependencies(launcher KytyGitVersion)  
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 set(launcher_name "launcher")
 
 set_target_properties(launcher PROPERTIES OUTPUT_NAME ${launcher_name})
