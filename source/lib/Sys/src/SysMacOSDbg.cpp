@@ -12,20 +12,20 @@
 
 namespace Kyty {
 
-static thread_local dbg_stack_info_t g_stack = {0};
+static thread_local sys_dbg_stack_info_t g_stack = {0};
 
 void sys_stack_walk(void** /*stack*/, int* depth)
 {
 	*depth = 0;
 }
 
-void sys_stack_usage_print(dbg_stack_info_t& stack)
+void sys_stack_usage_print(sys_dbg_stack_info_t& stack)
 {
 	printf("stack: (0x%" PRIx64 ", %" PRIu64 ")\n", static_cast<uint64_t>(stack.commited_addr), static_cast<uint64_t>(stack.commited_size));
 	printf("code: (0x%" PRIx64 ", %" PRIu64 ")\n", static_cast<uint64_t>(stack.code_addr), static_cast<uint64_t>(stack.code_size));
 }
 
-void sys_stack_usage(dbg_stack_info_t& s)
+void sys_stack_usage(sys_dbg_stack_info_t& s)
 {
 	pid_t pid = getpid();
 
@@ -47,7 +47,7 @@ void sys_stack_usage(dbg_stack_info_t& s)
 
 	result = sprintf(str, "/proc/%d/maps", static_cast<int>(pid));
 
-	memset(&s, 0, sizeof(dbg_stack_info_t));
+	memset(&s, 0, sizeof(sys_dbg_stack_info_t));
 
 	FILE* f = fopen(str, "r");
 
