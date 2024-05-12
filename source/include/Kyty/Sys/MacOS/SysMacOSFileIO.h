@@ -4,7 +4,7 @@
 // IWYU pragma: private
 
 #if KYTY_PLATFORM != KYTY_PLATFORM_MACOS
-//#error "KYTY_PLATFORM != KYTY_PLATFORM_LINUX"
+//#error "KYTY_PLATFORM != KYTY_PLATFORM_MACOS"
 #else
 
 #include "Kyty/Core/String.h"

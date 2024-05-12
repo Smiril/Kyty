@@ -892,7 +892,7 @@ void DebugMap::LoadCsv(const String& name)
             static_cast<uintptr_t>(sys_strtoui64(s2, nullptr, 10)), s3, s4};
         
         m_p->data2.Add(inf);
-#elif defined(APPLE)
+#elif __APPLE__
 
 #endif
 		
