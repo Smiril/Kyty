@@ -3,9 +3,7 @@
 
 // IWYU pragma: private
 
-#if KYTY_PLATFORM != KYTY_PLATFORM_MACOS
-//#error "KYTY_PLATFORM != KYTY_PLATFORM_MACOS"
-#else
+#if defined(__APPLE__)
 
 #include "Kyty/Core/String.h"
 #include "Kyty/Sys/MacOS/SysMacOSTimer.h"

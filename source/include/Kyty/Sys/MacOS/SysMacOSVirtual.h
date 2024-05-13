@@ -1,9 +1,7 @@
 #ifndef INCLUDE_KYTY_SYS_MACOS_SYSLINUXVIRTUAL_H_
 #define INCLUDE_KYTY_SYS_MACOS_SYSLINUXVIRTUAL_H_
 
-#if KYTY_PLATFORM != KYTY_PLATFORM_MACOS
-//#error "KYTY_PLATFORM != KYTY_PLATFORM_MACOS"
-#else
+#if defined(__APPLE__)
 
 #include "Kyty/Core/Common.h"
 #include "Kyty/Core/String.h"

@@ -3,9 +3,7 @@
 
 // IWYU pragma: private
 
-#if KYTY_PLATFORM != KYTY_PLATFORM_MACOS
-//#error "KYTY_PLATFORM != KYTY_PLATFORM_MACOS"
-#else
+#if defined(__APPLE__)
 
 #include "Kyty/Sys/MacOS/SysMacOSSync.h"
 
@@ -15,12 +13,12 @@ using sys_heap_id_t = SysCS*;
 
 inline sys_heap_id_t sys_heap_create()
 {
-	return nullptr;
+	return 0;
 }
 
 inline sys_heap_id_t sys_heap_deafult()
 {
-	return nullptr;
+	return 0;
 }
 
 inline void* sys_heap_alloc(sys_heap_id_t /*heap_id*/, size_t size)
@@ -28,7 +26,7 @@ inline void* sys_heap_alloc(sys_heap_id_t /*heap_id*/, size_t size)
 	// NOLINTNEXTLINE(cppcoreguidelines-no-malloc,hicpp-no-malloc)
 	void* m = malloc(size);
 
-	EXIT_IF(m == nullptr);
+	EXIT_IF(m == 0);
 
 	return m;
 }
@@ -36,11 +34,11 @@ inline void* sys_heap_alloc(sys_heap_id_t /*heap_id*/, size_t size)
 inline void* sys_heap_realloc(sys_heap_id_t /*heap_id*/, void* p, size_t size)
 {
 	// NOLINTNEXTLINE(cppcoreguidelines-no-malloc,hicpp-no-malloc)
-	void* m = p != nullptr ? realloc(p, size) : malloc(size);
+	void* m = p != 0 ? realloc(p, size) : malloc(size);
 
-	if (m == nullptr)
+	if (m == 0)
 	{
-		EXIT_IF(m == nullptr);
+		EXIT_IF(m == 0);
 	}
 
 	return m;
@@ -68,7 +66,7 @@ inline void* sys_heap_alloc_s(sys_heap_id_t heap_id, size_t size)
 
 	heap_id->Leave();
 
-	EXIT_IF(m == nullptr);
+	EXIT_IF(m == 0);
 
 	return m;
 }
@@ -78,11 +76,11 @@ inline void* sys_heap_realloc_s(sys_heap_id_t heap_id, void* p, size_t size)
 	heap_id->Enter();
 
 	// NOLINTNEXTLINE(cppcoreguidelines-no-malloc,hicpp-no-malloc)
-	void* m = p != nullptr ? realloc(p, size) : malloc(size);
+	void* m = p != 0 ? realloc(p, size) : malloc(size);
 
 	heap_id->Leave();
 
-	EXIT_IF(m == nullptr);
+	EXIT_IF(m == 0);
 
 	return m;
 }

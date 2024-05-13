@@ -12,11 +12,11 @@
 #include <condition_variable> // IWYU pragma: keep
 #include <mutex>
 
-#if KYTY_PLATFORM == KYTY_PLATFORM_WINDOWS && KYTY_COMPILER == KYTY_COMPILER_CLANG
+#if defined(__WIN64__)
 #define KYTY_WIN_CS
 #endif
 
-#if KYTY_PLATFORM != KYTY_PLATFORM_WINDOWS && KYTY_PLATFORM != KYTY_PLATFORM_LINUX
+#if defined(__APPLE__)
 #define KYTY_SDL_THREADS
 #define KYTY_SDL_CS
 #endif

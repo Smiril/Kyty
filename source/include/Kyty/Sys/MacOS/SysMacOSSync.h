@@ -3,9 +3,7 @@
 
 // IWYU pragma: private
 
-#if KYTY_PLATFORM != KYTY_PLATFORM_MACOS
-//#error "KYTY_PLATFORM != KYTY_PLATFORM_MACOS"
-#else
+#if defined(__APPLE__)
 
 #include <pthread.h>
 #include <unistd.h>
@@ -24,7 +22,7 @@ public:
 		m_check_ptr = this;
 
 		pthread_mutexattr_t attr {};
-		pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE_NP);
+		pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
 		pthread_mutex_init(&m_mutex, &attr);
 		pthread_mutexattr_destroy(&attr);
 	}

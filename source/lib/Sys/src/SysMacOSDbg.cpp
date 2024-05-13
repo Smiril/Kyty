@@ -9,6 +9,7 @@
 #include <sys/param.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <libgen.h>
 
 namespace Kyty {
 
@@ -43,7 +44,7 @@ void sys_stack_usage(sys_dbg_stack_info_t& s)
 		return;
 	}
 	str2[buff_len]   = '\0';
-	const char* name = basename(str2);
+    const char* name = basename(str2);
 
 	result = snprintf(str, 1024,"/proc/%d/maps", static_cast<int>(pid));
 
@@ -81,7 +82,7 @@ void sys_stack_usage(sys_dbg_stack_info_t& s)
 			break;
 		}
 
-		filename[0]    = 0;
+		filename[0];
 		permissions[0] = 0;
 		addr           = 0;
 		size           = 0;

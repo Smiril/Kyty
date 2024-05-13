@@ -3,7 +3,7 @@
 
 // IWYU pragma: private
 
-#if __APPLE__
+#if defined(__APPLE__)
 
 #include <ctime>
 
@@ -51,7 +51,7 @@ inline void sys_file_to_system_time_utc(const SysFileTimeStruct& f, SysTimeStruc
 
 inline void sys_time_t_to_system(time_t t, SysTimeStruct& s)
 {
-	SysTimeStruct ft {};
+    SysFileTimeStruct ft {};
 	ft.time       = t;
 	ft.is_invalid = false;
 	sys_file_to_system_time_utc(ft, s);
